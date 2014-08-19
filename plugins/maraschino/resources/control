@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec /usr/pbi/maraschino-$(uname -m)/bin/python2.7 /usr/pbi/maraschino-$(uname -m)/control.py $*

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec /usr/pbi/htpc-manager-$(uname -m)/bin/python2.7 /usr/pbi/htpc-manager-$(uname -m)/control.py $*

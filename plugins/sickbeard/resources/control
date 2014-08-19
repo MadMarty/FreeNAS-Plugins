@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec /usr/pbi/sickbeard-$(uname -m)/bin/python2.7 /usr/pbi/sickbeard-$(uname -m)/control.py $*

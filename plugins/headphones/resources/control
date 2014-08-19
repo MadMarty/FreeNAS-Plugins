@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec /usr/pbi/headphones-$(uname -m)/bin/python2.7 /usr/pbi/headphones-$(uname -m)/control.py $*
