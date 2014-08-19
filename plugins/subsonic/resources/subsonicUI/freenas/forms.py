@@ -31,8 +31,7 @@ class SubsonicForm(forms.ModelForm):
             if obj.enable:
                 f.write('subsonic_enable="YES"\n')
 
-        conf_dir = os.path.join(utils.subsonic_etc_path, "subsonic")
-        settingsfile = os.path.join(conf_dir, "config.ini")
+        settingsfile = os.path.join(utils.subsonic_etc_path, "subsonic.conf")
         settings = {}
 
         for field in obj._meta.local_fields:
@@ -51,6 +50,7 @@ class SubsonicForm(forms.ModelForm):
             f.write('SUBSONIC_MAX_MEMORY="%d"\n' % (obj.subsonic_max_memory, ))
             f.write('SUBSONIC_SSL="%s"\n' % (subsonic_ssl, ))
             f.write('SUBSONIC_PORT="%d"\n' % (obj.subsonic_port, ))
-            f.write('SUBSONIC_CONTEXT_PATH="%s"' % (obj.subsonic_context_path, ))
+            f.write('SUBSONIC_CONTEXT_PATH="%s"\n' % (obj.subsonic_context_path, ))
+            f.write('SUBSONIC_LOCALE="%s"' % (obj.subsonic_locale, ))
 
         os.system(os.path.join(utils.subsonic_pbi_path, "tweak-rcconf"))
