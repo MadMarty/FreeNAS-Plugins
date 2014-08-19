@@ -16,6 +16,7 @@ class Migration(SchemaMigration):
             ('madsonic_ssl', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('madsonic_port', self.gf('django.db.models.fields.IntegerField')(default=4040)),
             ('madsonic_context_path', self.gf('django.db.models.fields.CharField')(default='/', max_length=120)),
+            ('madsonic_locale', self.gf('django.db.models.fields.CharField')(default='en_US.UTF-8', max_length=120)),
         ))
         db.send_create_signal('freenas', ['Madsonic'])
 
@@ -35,6 +36,7 @@ class Migration(SchemaMigration):
             'madsonic_ssl': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'madsonic_port': ('django.db.models.fields.IntegerField', [], {'default': '4040'}),
             'madsonic_context_path': ('django.db.models.fields.CharField', [], {'default': "'/'", 'max_length': '120'}),
+            'madsonic_locale': ('django.db.models.fields.CharField', [], {'default': "'en_US.UTF-8'", 'max_length': '120'}),
         }
     }
 

@@ -57,4 +57,8 @@ madsonic_settings = {
         "field": "madsonic_context_path",
         "type": "textbox",
         },
+    "madsonic_locale": {
+        "field": "madsonic_locale",
+        "type": "textbox",
+        },
 }

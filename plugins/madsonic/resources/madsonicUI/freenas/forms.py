@@ -31,8 +31,7 @@ class MadsonicForm(forms.ModelForm):
             if obj.enable:
                 f.write('madsonic_enable="YES"\n')
 
-        conf_dir = os.path.join(utils.madsonic_etc_path, "madsonic")
-        settingsfile = os.path.join(conf_dir, "config.ini")
+        settingsfile = os.path.join(utils.madsonic_etc_path, "madsonic.conf")
         settings = {}
 
         for field in obj._meta.local_fields:
@@ -51,6 +50,7 @@ class MadsonicForm(forms.ModelForm):
             f.write('MADSONIC_MAX_MEMORY="%d"\n' % (obj.madsonic_max_memory, ))
             f.write('MADSONIC_SSL="%s"\n' % (madsonic_ssl, ))
             f.write('MADSONIC_PORT="%d"\n' % (obj.madsonic_port, ))
-            f.write('MADSONIC_CONTEXT_PATH="%s"' % (obj.madsonic_context_path, ))
+            f.write('MADSONIC_CONTEXT_PATH="%s"\n' % (obj.madsonic_context_path, ))
+            f.write('MADSONIC_LOCALE="%s"' % (obj.madsonic_locale, ))
 
         os.system(os.path.join(utils.madsonic_pbi_path, "tweak-rcconf"))
