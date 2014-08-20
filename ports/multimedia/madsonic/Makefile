@@ -3,7 +3,7 @@
 PORTNAME=	madsonic
 PORTVERSION=	5.1
 CATEGORIES=	multimedia
-MASTER_SITES=	http://madsonic.org/downloads/FreeBSD/
+MASTER_SITES=	http://madsonic.org/download/FreeBSD/
 DISTNAME=	${PORTNAME}-${PORTVERSION}.5060-standalone
 
 MAINTAINER=	madevil@madsonic.org
