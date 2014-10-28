@@ -49,6 +49,14 @@ madsonic_settings = {
         "field": "madsonic_ssl",
         "type": "checkbox",
         },
+    "madsonic_ssl_keystore": {
+        "field": "madsonic_ssl_keystore",
+        "type": "textbox",
+        },
+    "madsonic_ssl_password": {
+        "field": "madsonic_ssl_password",
+        "type": "textbox",
+        },
     "madsonic_port": {
         "field": "madsonic_port",
         "type": "textbox",

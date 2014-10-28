@@ -262,11 +262,9 @@ def edit(request, plugin_id):
         jail = json.loads(server.plugins.jail.info(plugin_id))[0]['fields']
         jail_ipv4 = jail['jail_ipv4'].split('/')[0]
 	if madsonic.madsonic_ssl:
-		madsonic_scheme = "https"
+		scheme = "https"
 	else:
-		madsonic_scheme = "http"
-	madsonic_port = madsonic.madsonic_port
-	madsonic_webroot = madsonic.madsonic_context_path
+		scheme = "http"
         auth = server.plugins.is_authenticated(
             request.COOKIES.get("sessionid", "")
             )
@@ -279,9 +277,9 @@ def edit(request, plugin_id):
         return render(request, "edit.html", {
             'form': form,
             'ipv4': jail_ipv4,
-            'scheme': madsonic_scheme,
-            'port': madsonic_port,
-            'webroot': madsonic_webroot
+            'scheme': scheme,
+            'port': madsonic.madsonic_port,
+            'webroot': madsonic.subsonic_context_path
         })
 
     if not request.POST:
