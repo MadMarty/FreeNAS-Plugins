@@ -21,6 +21,7 @@
 #			data is stored.
 #			Default: /var/db/%%PORTNAME%%
 
+
 . /etc/rc.subr
 name="%%PORTNAME%%"
 rcvar="${name}_enable"
@@ -34,14 +35,22 @@ load_rc_config $name
 
 . %%PREFIX%%/etc/%%PORTNAME%%.conf
 if $MADSONIC_SSL; then
-	MADSONIC_HTTPS_PORT="$MADSONIC_PORT"
-	MADSONIC_PORT="0"
-else
-	MADSONIC_HTTPS_PORT="0"
+	madsonic_ssl_flags="-Dmadsonic.httpsPort=${MADSONIC_PORT}" && MADSONIC_PORT="0"
+	if [ ! -z ${MADSONIC_SSL_KEYSTORE} ]; then
+		madsonic_ssl_flags=${madsonic_ssl_flags}" -Dmadsonic.ssl.keystore=${MADSONIC_SSL_KEYSTORE} -Dmadsonic.ssl.password=${MADSONIC_SSL_PASSWORD}"
+	fi
 fi
 
 madsonic_chdir="$madsonic_dir/Madsonic"
-command="%%JAVA_CMD%%"
-command_args="-Xmx${MADSONIC_MAX_MEMORY}m -Dmadsonic.home=$madsonic_data_dir -Dmadsonic.port=$MADSONIC_PORT -Dmadsonic.httpsPort=$MADSONIC_HTTPS_PORT -Dmadsonic.contextPath=$MADSONIC_CONTEXT_PATH -Djava.awt.headless=true -verbose:gc -jar $madsonic_chdir/madsonic-booter.jar >/dev/null 2>&1 &"
+command="/usr/sbin/daemon"
+procname="%%JAVA_CMD%%"
+command_args="-f ${procname} -Xmx${MADSONIC_MAX_MEMORY}m -Dmadsonic.home=${madsonic_data_dir} -Dmadsonic.port=${MADSONIC_PORT} ${madsonic_ssl_flags} 
+-Dmadsonic.contextPath=${MADSONIC_CONTEXT_PATH} -Djava.awt.headless=true -jar ${madsonic_chdir}/madsonic-booter.jar"
+
+start_precmd="%%PORTNAME%%_prestart"
+%%PORTNAME%%_prestart() {
+	export LC_CTYPE="$MADSONIC_LOCALE"
+}
 
 run_rc_command "$1"
+

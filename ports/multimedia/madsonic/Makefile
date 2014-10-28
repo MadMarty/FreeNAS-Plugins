@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	madsonic
-PORTVERSION=	5.1
+PORTVERSION=	5.2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://madsonic.org/download/FreeBSD/
-DISTNAME=	${PORTNAME}-${PORTVERSION}.5080-standalone
+DISTNAME=	${PORTNAME}-${PORTVERSION}.5250-standalone
 
 MAINTAINER=	madevil@madsonic.org
 COMMENT=	Madsonic streaming media server
